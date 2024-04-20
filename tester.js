@@ -16,7 +16,10 @@ const getItemPrices = async (itemId) => {
 // Function to update item price
 const updateItemPrice = async (itemId, storeId, price) => {
   try {
-    const response = await axios.put(`${BASE_URL}/api/items/${itemId}/prices/${storeId}`, { price });
+    const response = await axios.put(
+      `${BASE_URL}/api/items/${itemId}/prices/${storeId}`,
+      { price },
+    );
     console.log("Update Response:", response.data);
   } catch (error) {
     console.error("Error updating item price:", error.response.data);
@@ -35,3 +38,6 @@ await getItemPrices(itemId);
 await updateItemPrice(itemId, storeId, newPrice);
 
 await getItemPrices(itemId);
+
+const hist = await axios.get(`${BASE_URL}/api/items/history`);
+console.log(hist.data);
